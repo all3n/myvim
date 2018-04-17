@@ -1,18 +1,23 @@
 import os
 import ycm_core
+ycm_flags_custom = os.path.expanduser("~/.config/ycm_flags.conf")
+
+include_dirs = ["/usr/include","/usr/local/include"]
 flags = [
     '-std=c++11',
     '-stdlib=libc++',
     '-xc++',
-    '-I.',
-    '-I/usr/include/c++/6',
-    '-I/usr/include/x86_64-linux-gnu/c++/6',
-    '-I/usr/include/c++/6/backward',
-    '-I/usr/lib/gcc/x86_64-linux-gnu/6/include',
-    '-I/usr/local/include',
-    '-I/usr/include/x86_64-linux-gnu',
-    '-I/usr/include'
+    '-I.'
 ]
+for idr in include_dirs:
+    if os.path.exists(idr):
+        flags.append("-I"+idr)
+
+if os.path.exists(ycm_flags_custom):
+    with open(ycm_flags_custom,"r") as f:
+        flags_ext = [os.path.expandvars(l.strip()) for l in f.readlines()]
+        flags.extend(flags_ext)
+
 compilation_database_folder = ''
 if compilation_database_folder:
   database = ycm_core.CompilationDatabase( compilation_database_folder )

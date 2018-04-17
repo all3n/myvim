@@ -5,11 +5,26 @@
 curl https://raw.githubusercontent.com/all3n/myvim/myvim.sh -L -o - |bash
 ```
 
+## 自定义配置
+1. ~/myvim/plugin_vundle.vim
+    1. 定义插件列表
+1. ~/myvim/plugin_config.vim
+    1. 插件相关配置
+
 ## 更新VIM 插件
 ```bash
     cd $HOME/myvim
+    ./myvim.sh
+    或者
     git pull
     vim +PluginInstall +qall
+```
+clean
+
+```
+    cd $HOME/myvim
+    ./myvim.sh clean
+
 ```
 
 ## General
@@ -20,23 +35,12 @@ curl https://raw.githubusercontent.com/all3n/myvim/myvim.sh -L -o - |bash
     1. 以下<leader>都是指 逗号,
 
 
-## [Undotree]
-**快捷键** `<Leader>u`
 
 ## [NERDTree]
-
-
-**QuickStart** Launch using `<Leader>e`.
-
-**Customizations**:
-
-* Use `<C-E>` to toggle NERDTree
-* Use `<leader>e` or `<leader>nt` to load NERDTreeFind which opens NERDTree where the current file is located.
-* Hide clutter ('\.pyc', '\.git', '\.hg', '\.svn', '\.bzr')
-* Treat NERDTree more like a panel than a split.
+1. `<Leader>e` Toggle NERDTree
 
 ## [ctrlp]
-**QuickStart** Launch using `<c-p>`.
+1. `<c-p>`.
 
 ## [Surround]
 
@@ -54,13 +58,17 @@ curl https://raw.githubusercontent.com/all3n/myvim/myvim.sh -L -o - |bash
 
 **快捷键** `<Leader>c<space>` 
 
-## [neocomplete]
 
 ## [YouCompleteMe]
-1. The ycmd server SHUT DOWN
-1. cd ~/.vim/bundle/YouCompleteMe/
-1. ./install.py --all
-
+1. Custom Your Flags
+    1. ~/.config/ycm_flags.conf
+        ```
+        -I/usr/include/c++/6
+        -I/usr/include/x86_64-linux-gnu/c++/6
+        -I/usr/lib/gcc/x86_64-linux-gnu/6/include
+        -I/usr/include/x86_64-linux-gnu
+        -I$HOME/XXX/include
+        ```
 ## [Syntastic]
     1. 语法检查插件
 ## [AutoClose]
