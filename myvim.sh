@@ -40,7 +40,7 @@ if [[ -d "$YCM" ]];then
     if [[ ! -f "$YCM_CORE" ]];then
         echo "start to build YouCompleteMe"
         pushd $YCM 2>&1
-        ./install.py --all
+        ./install.py --clang-completer
         popd
     fi
 fi

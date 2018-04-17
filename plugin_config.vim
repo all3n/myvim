@@ -89,8 +89,7 @@ if isdirectory(expand("~/.vim/bundle/YouCompleteMe"))
     " for python
     if executable('/usr/bin/env python3')
         let g:ycm_python_binary_path = '/usr/bin/env python3'
-    endif
-    if executable('/usr/bin/env python')
+    elseif executable('/usr/bin/env python')
         let g:ycm_python_binary_path = '/usr/bin/env python'
     endif
 endif
