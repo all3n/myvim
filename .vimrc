@@ -29,8 +29,6 @@
     set nocompatible              " be iMproved, required
     filetype off                  " required
 
-    """ a.vim switch .c and .h
-    nnoremap <silent> <F9> :A<CR>
 
     "设置切换Buffer快捷键"
     nnoremap <C-N> :bn<CR>

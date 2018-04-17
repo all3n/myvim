@@ -1,28 +1,27 @@
-" Compile {
 func! Compile_Run_Code()
   exec 'w'
   if &filetype == 'c'
-    if g:isWIN
+    if WINDOWS()
       exec '!gcc -Wall -std=c11 -o %:r %:t && %:r.exe'
     else
       exec '!gcc -Wall -std=c11 -o %:r.out %:t && ./%:r.out && rm ./%:r.out'
     endif
   elseif &filetype == 'cpp'
-    if g:isWIN
+    if WINDOWS()
       exec '!g++ -Wall -std=c++11 -o %:r %:t && %:r.exe'
     else
       exec '!g++ -Wall -std=c++11 -o %:r.out %:t && ./%:r.out && rm ./%:r.out'
     endif
   elseif &filetype == 'objc'
-    if g:isMAC
+    if OSX()
       exec '!clang -fobjc-arc -framework Foundation %:t -o %:r && ./%:r'
     endif
   elseif &filetype == 'swift'
-    if g:isMAC
+    if OSX()
       exec '!swift %:t'
     endif
  elseif &filetype == 'go'
-    if g:isWIN
+    if WINDOWS()
       exec '!go build %:t && %:r.exe'
     else
       exec '!go build %:t && ./%:r'
@@ -46,5 +45,15 @@ func! Compile_Run_Code()
   elseif &filetype == 'javascript'
     exec '!node %:t'
   elseif &filetype == 'coffee'
+    exec '!coffee -c %:t && node %:r.js'
+  elseif &filetype == 'r'
+    exec '!Rscript %:t'
+  elseif &filetype == 'sh'
+    exec '!bash %:t'
+  endif
 endfunction
-" }
+
+" run and compile
+imap <F5> <esc>:call Compile_Run_Code()<cr>
+nmap <F5> :call Compile_Run_Code()<cr>
+vmap <F5> <esc>:call Compile_Run_Code()<cr>

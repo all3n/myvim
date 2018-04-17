@@ -1,22 +1,45 @@
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+    " Vim 插件管理
     Plugin 'VundleVim/Vundle.vim'
+    " 文件目录管理
     Plugin 'scrooloose/nerdtree'
-    Plugin 'scrooloose/nerdcommenter'
-    Plugin 'kien/ctrlp.vim'
-    Plugin 'easymotion/vim-easymotion'
-    Plugin 'luochen1990/rainbow'
-    Plugin 'rizzatti/dash.vim'
-    Plugin 'vim-scripts/a.vim'
-    Plugin 'vim-airline/vim-airline'
+    " 文件目录管理 Git 标示插件
     Plugin 'Xuyuanp/nerdtree-git-plugin'
+    " 注释插件
+    Plugin 'scrooloose/nerdcommenter'
+    " 文件查找
+    Plugin 'kien/ctrlp.vim'
+    " 内容快速定位
+    Plugin 'easymotion/vim-easymotion'
+    " 括号彩虹色匹配高亮
+    Plugin 'luochen1990/rainbow'
+    " Dash 插件支持
+    Plugin 'rizzatti/dash.vim'
+    " Header/Souce 切换
+    Plugin 'vim-scripts/a.vim'
+    " 底部状态栏
+    Plugin 'vim-airline/vim-airline'
+    " 底部状态栏主题
     Plugin 'vim-airline/vim-airline-themes'
     Plugin 'tomasr/molokai'
+    " 右侧TagBar
     Plugin 'majutsushi/tagbar'
     Plugin 'echofunc.vim'
-    "Plugin 'godlygeek/tabular'
+    " tab 对齐排版插件
+    Plugin 'godlygeek/tabular'
     "Plugin 'plasticboy/vim-markdown'
     Plugin 'iamcco/mathjax-support-for-mkdp'
+    " Markdown 浏览器实时预览
     Plugin 'iamcco/markdown-preview.vim'
+    " 智能提示插件
+    Plugin 'Valloric/YouCompleteMe'
+    " 代码片段Snippets
+    Plugin 'SirVer/ultisnips'
+    Plugin 'honza/vim-snippets'
+
+    " AutoPairs
+    Plugin 'jiangmiao/auto-pairs'
+
 call vundle#end()            " required
 

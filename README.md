@@ -2,11 +2,7 @@
 
 ## 安装
 ```bash
-curl https://raw.githubusercontent.com/all3n/myvim/install.sh -L -o - |sh
-```
-精简版本
-```bash
-curl -o ~/.vimrc https://raw.githubusercontent.com/all3n/myvim/.vimrc.simple 
+curl https://raw.githubusercontent.com/all3n/myvim/myvim.sh -L -o - |bash
 ```
 
 ## 更新VIM 插件
@@ -18,16 +14,6 @@ curl -o ~/.vimrc https://raw.githubusercontent.com/all3n/myvim/.vimrc.simple
 
 ## General
     1. <leader>sudo sudo save
-
-
-## 删除插件
-
-```bash
-    echo UnBundle \'AutoClose\' >> ~/.vimrc.bundles.local
-    echo UnBundle \'scrooloose/syntastic\' >> ~/.vimrc.bundles.local
-```
-
-记得运行 ':BundleClean!'
 
 
 ## Leader
@@ -71,6 +57,9 @@ curl -o ~/.vimrc https://raw.githubusercontent.com/all3n/myvim/.vimrc.simple
 ## [neocomplete]
 
 ## [YouCompleteMe]
+1. The ycmd server SHUT DOWN
+1. cd ~/.vim/bundle/YouCompleteMe/
+1. ./install.py --all
 
 ## [Syntastic]
     1. 语法检查插件
@@ -95,7 +84,7 @@ curl -o ~/.vimrc https://raw.githubusercontent.com/all3n/myvim/.vimrc.simple
 
 ## [Ack.vim]
 
-## [Tabularize]
+## [Tabularize] 排版插件 按指定符号对齐
 
  * `<Leader>a= :Tabularize /=<CR>`
  * `<Leader>a: :Tabularize /:<CR>`
@@ -124,7 +113,11 @@ curl -o ~/.vimrc https://raw.githubusercontent.com/all3n/myvim/.vimrc.simple
 * peaksea
 
 ## Snippets
+1. Tab Expand Snippets
 
+
+## A.vim
+    1. F9 source/header Toggle
 
 ## CTags
     1. tags = ./tags;~/.vimtags
