@@ -2,11 +2,11 @@
 # Program:
 #   This program is used to generate system ctags for vim editor and auto add path for vim
 
-PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/~/bin
-export PATH
+#PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/~/bin
+#export PATH
 
 # The ctags result will be store at /home/$(USER)/.vim/systags
-systagsdirpath="/home/${USER}/.vim/"
+systagsdirpath="${HOME}/.vim/"
 systagspath="${systagsdirpath}systags"
 #echo ${systagsdirpath}
 #echo ${systagspath}
@@ -79,7 +79,8 @@ fi
 
 # now, generate tags file
 echo -n "Now, generate system ctags for vim editor ... "
-ctags -I __THROW -I __attribute__ -I __attribute_pure__ -I __nonnull --file-scope=yes --langmap=c:+.h --languages=c,c++ --links=yes --c-kinds=+p --c++-kinds=+p --fields=+iaS --extra=+q -R -f ${systagspath} /usr/include /usr/local/include
+#ctags -I __THROW -I __attribute__ -I __attribute_pure__ -I __nonnull --file-scope=yes --langmap=c:+.h --languages=c,c++ --links=yes --c-kinds=+p --c++-kinds=+p --fields=+iaS --extra=+q -R -f ${systagspath} /usr/include /usr/local/include /usr/include/c++/4.2.1
+ctags -I __THROW -I __attribute__ -I __attribute_pure__ -I __nonnull --file-scope=yes --langmap=c:+.h --languages=c,c++ --links=yes --c-kinds=+p --c++-kinds=+p --fields=+iaS --extra=+q -R -f ${systagspath} /usr/include
 
 
 echo "success."
