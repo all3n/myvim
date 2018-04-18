@@ -29,6 +29,11 @@ clean
 
 ## General
     1. <leader>sudo sudo save
+    1. %  对应括号之前切换
+
+## Fold 折叠
+    1. 打开关闭单个折叠 zo,zc
+    1. 打开关闭全部折叠 zr,zm
 
 
 ## Leader
@@ -69,8 +74,10 @@ clean
         -I/usr/include/x86_64-linux-gnu
         -I$HOME/XXX/include
         ```
-## [Syntastic]
+## [Ale]
     1. 语法检查插件
+    1. python
+        1. pip install --user flake8
 ## [AutoClose]
     1. 自动闭合
 ## [Fugitive]
@@ -88,9 +95,6 @@ clean
          * :Git ___ will pass anything along to git.
 
 
-## [PIV] PHP
-
-## [Ack.vim]
 
 ## [Tabularize] 排版插件 按指定符号对齐
 
@@ -101,7 +105,7 @@ clean
  * `<Leader>a<Bar> :Tabularize /<Bar><CR>`
 
 ## [Tagbar]
- * leader tt:Toggle TagBar
+ * <leader> tt   Toggle TagBar
 
 ## [EasyMotion] 快速定位
     1. `<leader><leader>w`  `<leader><leader>b`  word/back
@@ -112,13 +116,11 @@ clean
     1. 行内跳
         1. `<leader><leader>h`
         1. `<leader><leader>l`
+
 ## [Airline] 彩色状态条
 
 ## Amazing Colors
-
-* ir_black
-* molokai
-* peaksea
+    * molokai
 
 ## Snippets
 1. Tab Expand Snippets
@@ -127,9 +129,19 @@ clean
 ## A.vim
     1. F9 source/header Toggle
 
+## AutoFormat
+    1. F8 进行AutoFormat
+    1. 如果不生效可以打开 let g:autoformat_verbosemode=1 查看原因
+    1. python pep8 
+        1. pip install --user yapf
+    1. c++/c/java:atyle
+        1. apt-get install astyle
+        1. or build from source:http://astyle.sourceforge.net/ 
 ## CTags
     1. tags = ./tags;~/.vimtags
     1. F10 gen-ctags
+    1. Ctrl ] 跳转定义
+    1. Ctrl t 返回
 
 ## MarkdownPreview
     1. :MarkdownPreview

@@ -28,7 +28,8 @@ call vundle#begin()
     Plugin 'echofunc.vim'
     " tab 对齐排版插件
     Plugin 'godlygeek/tabular'
-    "Plugin 'plasticboy/vim-markdown'
+    " markdown 高亮
+    Plugin 'plasticboy/vim-markdown'
     Plugin 'iamcco/mathjax-support-for-mkdp'
     " Markdown 浏览器实时预览
     Plugin 'iamcco/markdown-preview.vim'
@@ -38,8 +39,19 @@ call vundle#begin()
     Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
 
-    " AutoPairs
+    " AutoPairs 自动匹配括号
     Plugin 'jiangmiao/auto-pairs'
+    " AutoFormat 格式化
+    Plugin 'Chiel92/vim-autoformat'
+
+    " 模板
+    Plugin 'aperezdc/vim-template'
+
+    " Show Diff
+    Plugin 'mhinz/vim-signify'
+
+    " Syntax Check 语法检测
+    Plugin 'w0rp/ale'
 
 call vundle#end()            " required
 

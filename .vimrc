@@ -408,7 +408,10 @@ endfunction
     set foldmethod=syntax
     set foldmethod=marker
     set foldmarker={,}
-    set foldlevel=0
+    setlocal foldlevel=1        " 设置折叠层数为
+    set foldlevelstart=99       " 打开文件是默认不折叠代码
+    nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+                            " 用空格键来开关折叠
 " }
 
 " Clever Tab tips {
@@ -433,13 +436,8 @@ if filereadable(expand("~/myvim/plugin_config.vim"))
 endif
 " }
 
-" Load Compile/Color Config {
+" Load Compile Config {
 if filereadable(expand("~/myvim/compile.vim"))
     source ~/myvim/compile.vim
-endif
-
-
-if filereadable(expand("~/myvim/color_config.vim"))
-    " source ~/myvim/color_config.vim
 endif
 " }
