@@ -60,9 +60,10 @@ if executable("ctags")
     imap <F10> <ESC>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
     set tags=tags
     set tags+=./tags "add current directory's generated tags file
-    if exists(expand("~/.vim/systags"))
-        set tags+=expand("~/.vim/systags")
-    endif
+    set tags+=~/.vim/systags
+    "if exists(expand("~/.vim/systags"))
+    "    set tags+=~/.vim/systags
+    "endif
 endif
 " }
 
