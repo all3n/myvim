@@ -30,6 +30,16 @@ clean
 ## General
     1. <leader>sudo sudo save
     1. %  对应括号之前切换
+    1. Tab Buffer
+        1. C+N 下一个Buffer Tab
+        1. C+M 上一个Buffer Tab
+    1. Save
+        1. Leader w  保存
+        1. Leader sudo   强制保存
+    1. Paste
+        1. F4
+    1. Format
+        1. Leader f    ggVG=
 
 ## Fold 折叠
     1. 打开关闭单个折叠 zo,zc
@@ -141,6 +151,7 @@ clean
     1. tags = ./tags;~/.vimtags
     1. F10 gen-ctags
     1. Ctrl ] 跳转定义
+    1. g] 跳转列表 选择
     1. Ctrl t 返回
 
 ## MarkdownPreview
