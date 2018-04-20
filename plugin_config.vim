@@ -67,6 +67,23 @@ if executable("ctags")
 endif
 " }
 
+" cscope {
+  if has("cscope")
+      set csprg=cscope
+      set csto=0
+      set cst
+      set nocsverb
+      " add any database in current directory
+      if filereadable("cscope.out")
+          cs add cscope.out
+      " else add database pointed to by environment
+      elseif $CSCOPE_DB != ""
+          cs add $CSCOPE_DB
+      endif
+      set csverb
+  endif
+" }
+
 " plugin tagbar {
 if isdirectory(expand("~/.vim/bundle/tagbar"))
     nnoremap <silent> <leader>tt :TagbarToggle<CR>
@@ -84,9 +101,15 @@ if isdirectory(expand("~/.vim/bundle/YouCompleteMe"))
     let g:ycm_enable_diagnostic_signs = 0
     let g:ycm_enable_diagnostic_highlighting = 1
     let g:ycm_collect_identifiers_from_comments_and_strings = 0
+    
+
     let g:ycm_complete_in_comments = 0
     let g:ycm_complete_in_strings = 0
     let g:ycm_min_num_of_chars_for_completion = 2
+    nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+    nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+    nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+    "往前跳和往后跳的快捷键为Ctrl+O以及Ctrl+I
 
     " for python
     if executable('/usr/bin/env python3')
