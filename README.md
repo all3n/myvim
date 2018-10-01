@@ -84,10 +84,21 @@ clean
         -I/usr/include/x86_64-linux-gnu
         -I$HOME/XXX/include
         ```
+    1. 快捷键:
+        1. Ctrl + i 提示补全
+        1. leader + gl   跳转定义
+        1. leader + gf   跳转声明
+        1. leader + gg   跳转定义或者声明
+        1. 前跳 Ctrl + O
+        1. 后跳 Ctrl + I
 ## [Ale]
     1. 语法检查插件
     1. python
         1. pip install --user flake8
+    1. 快捷键
+        1. <Leader>s   Toggle ALE 提示
+        1. <Leader>d    查看ALE具体提示
+
 ## [AutoClose]
     1. 自动闭合
 ## [Fugitive]
