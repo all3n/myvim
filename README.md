@@ -1,12 +1,13 @@
 # myvim 
 
 ## 安装
+full version:
 ```bash
 curl https://raw.githubusercontent.com/all3n/myvim/myvim.sh -L -o - |bash
 ```
-simple
+simple version:
 ```
-curl -o ~/.vimrc https://raw.githubusercontent.com/all3n/myvim/.vimrc.simple
+curl -o ~/.vimrc https://raw.githubusercontent.com/all3n/myvim/master/.vimrc.simple
 ```
 
 ## 自定义配置
