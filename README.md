@@ -4,6 +4,10 @@
 ```bash
 curl https://raw.githubusercontent.com/all3n/myvim/myvim.sh -L -o - |bash
 ```
+simple
+```
+curl -o ~/.vimrc https://raw.githubusercontent.com/all3n/myvim/.vimrc.simple
+```
 
 ## 自定义配置
 1. ~/myvim/plugin_vundle.vim
