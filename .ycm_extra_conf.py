@@ -69,6 +69,7 @@ for idr in include_dirs:
 if os.path.exists(ycm_flags_custom):
     with open(ycm_flags_custom, "r") as f:
         flags_ext = [os.path.expandvars(l.strip()) for l in f.readlines()]
+        flags.extend(flags_ext)
 
 # Clang automatically sets the '-std=' flag to 'c++14' for MSVC 2015 or later,
 # which is required for compiling the standard library, and to 'c++11' for older

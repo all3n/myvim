@@ -1,8 +1,13 @@
 # myvim 
 
 ## 安装
+full version:
 ```bash
 curl https://raw.githubusercontent.com/all3n/myvim/myvim.sh -L -o - |bash
+```
+simple version:
+```
+curl -o ~/.vimrc https://raw.githubusercontent.com/all3n/myvim/master/.vimrc.simple
 ```
 
 ## 自定义配置
@@ -89,10 +94,21 @@ clean
         ```
     1. CompleteParameter.vim 增强YCM 显示参数 C-j 下一个参数 C-k 上一个参数
     1. echodoc.vim 在调用函数在下方显示具体参数
+    1. 快捷键:
+        1. Ctrl + i 提示补全
+        1. leader + gl   跳转定义
+        1. leader + gf   跳转声明
+        1. leader + gg   跳转定义或者声明
+        1. 前跳 Ctrl + O
+        1. 后跳 Ctrl + I
 ## [Ale]
     1. 语法检查插件
     1. python
         1. pip install --user flake8
+    1. 快捷键
+        1. <Leader>s   Toggle ALE 提示
+        1. <Leader>d    查看ALE具体提示
+
 ## [AutoClose]
     1. 自动闭合
 ## [Fugitive]

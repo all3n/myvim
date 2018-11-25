@@ -51,13 +51,12 @@ call vundle#begin()
 
     " Syntax Check 语法检测
     Plugin 'w0rp/ale'
-
+    " Menu Plugin
+    Plugin 'skywind3000/quickmenu.vim'
 
     Plugin 'tenfyzhong/CompleteParameter.vim'
     Plugin 'Shougo/echodoc.vim'
 
-
-    Plugin 'skywind3000/quickmenu.vim'
 
 call vundle#end()            " required
 
