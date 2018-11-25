@@ -1,4 +1,10 @@
-" myvim
+"    #     # #     # #     # ### #     # 
+"    ##   ##  #   #  #     #  #  ##   ## 
+"    # # # #   # #   #     #  #  # # # # 
+"    #  #  #    #    #     #  #  #  #  # 
+"    #     #    #     #   #   #  #     # 
+"    #     #    #      # #    #  #     # 
+"    #     #    #       #    ### #     # 
 
 " General {
     " Sets how many lines of history VIM has to remember
@@ -191,8 +197,8 @@ set wrap "Wrap lines
     map <silent> <leader><cr> :noh<cr>
 
     " Smart way to move between windows
-    map <C-j> <C-W>j
-    map <C-k> <C-W>k
+    "map <C-j> <C-W>j
+    "map <C-k> <C-W>k
     map <C-h> <C-W>h
     map <C-l> <C-W>l
 
@@ -409,7 +415,7 @@ endfunction
     set foldmethod=marker
     set foldmarker={,}
     setlocal foldlevel=1        " 设置折叠层数为
-    set foldlevelstart=99       " 打开文件是默认不折叠代码
+    set foldlevelstart=99      " 打开文件是默认不折叠代码
     nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
                             " 用空格键来开关折叠
 " }
@@ -424,6 +430,8 @@ endfunction
     endfunction
     "inoremap <Tab> <C-R>=CleverTab()<CR>
 " }
+
+
 
 " load plugin conf {
 if filereadable(expand("~/myvim/plugin_vundle.vim"))
@@ -441,3 +449,6 @@ if filereadable(expand("~/myvim/compile.vim"))
     source ~/myvim/compile.vim
 endif
 " }
+
+
+

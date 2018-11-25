@@ -25,7 +25,6 @@ call vundle#begin()
     Plugin 'tomasr/molokai'
     " 右侧TagBar
     Plugin 'majutsushi/tagbar'
-    Plugin 'echofunc.vim'
     " tab 对齐排版插件
     Plugin 'godlygeek/tabular'
     " markdown 高亮
@@ -52,6 +51,13 @@ call vundle#begin()
 
     " Syntax Check 语法检测
     Plugin 'w0rp/ale'
+
+
+    Plugin 'tenfyzhong/CompleteParameter.vim'
+    Plugin 'Shougo/echodoc.vim'
+
+
+    Plugin 'skywind3000/quickmenu.vim'
 
 call vundle#end()            " required
 

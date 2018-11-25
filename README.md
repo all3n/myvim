@@ -10,6 +10,9 @@ curl https://raw.githubusercontent.com/all3n/myvim/myvim.sh -L -o - |bash
     1. 定义插件列表
 1. ~/myvim/plugin_config.vim
     1. 插件相关配置
+    1. 可以在 https://vimawesome.com/ 上搜索插件
+
+
 
 ## 更新VIM 插件
 ```bash
@@ -84,6 +87,8 @@ clean
         -I/usr/include/x86_64-linux-gnu
         -I$HOME/XXX/include
         ```
+    1. CompleteParameter.vim 增强YCM 显示参数 C-j 下一个参数 C-k 上一个参数
+    1. echodoc.vim 在调用函数在下方显示具体参数
 ## [Ale]
     1. 语法检查插件
     1. python
@@ -155,7 +160,7 @@ clean
     1. Ctrl t 返回
 
 ## MarkdownPreview
-    1. :MarkdownPreview
+    1. :MarkdownPreview 或则  <Leader>md
 
 
 ## Useful commands

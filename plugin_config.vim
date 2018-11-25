@@ -92,31 +92,29 @@ endif
 
 " YouCompleteMe {
 if isdirectory(expand("~/.vim/bundle/YouCompleteMe"))
-    let g:ycm_key_invoke_completion = '<C-i>'
+    let g:ycm_key_invoke_completion = '<C-l>'
     let g:ycm_global_ycm_extra_conf = '~/myvim/.ycm_extra_conf.py'
     let g:ycm_confirm_extra_conf = 0
     set completeopt=longest,menu
-    autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-    inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+    "autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+    "inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
     let g:ycm_enable_diagnostic_signs = 0
     let g:ycm_enable_diagnostic_highlighting = 1
     let g:ycm_collect_identifiers_from_comments_and_strings = 0
-    
 
+    let g:ycm_seed_identifiers_with_syntax = 1
     let g:ycm_complete_in_comments = 0
     let g:ycm_complete_in_strings = 0
     let g:ycm_min_num_of_chars_for_completion = 2
     nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
     nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
     nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+    
+    "let g:ycm_keep_logfiles = 1
+    "let g:ycm_log_level = 'debug'
     "往前跳和往后跳的快捷键为Ctrl+O以及Ctrl+I
 
-    " for python
-    if executable('/usr/bin/env python3')
-        let g:ycm_python_binary_path = '/usr/bin/env python3'
-    elseif executable('/usr/bin/env python')
-        let g:ycm_python_binary_path = '/usr/bin/env python'
-    endif
 endif
 " }
 
@@ -243,10 +241,45 @@ if isdirectory(expand("~/.vim/bundle/ale/"))
     "<Leader>s触发/关闭语法检查
     nmap <Leader>s :ALEToggle<CR>
     "<Leader>d查看错误或警告的详细信息
-    nmap <Leader>d :ALEDetail<CR>
+    nmap <Leader>ad :ALEDetail<CR>
     "文件内容发生变化时不进行检查
     " let g:ale_lint_on_text_changed = 'never'
     "打开文件时不进行检查
     " let g:ale_lint_on_enter = 0
 endif
+
+" YCM 参数显示增强插件
+if isdirectory(expand("~/.vim/bundle/CompleteParameter.vim/"))
+    "let g:complete_parameter_log_level = 1
+    inoremap <silent><expr> ( complete_parameter#pre_complete("()")
+    smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+    imap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+    smap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+    imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+
+    let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
+    inoremap <buffer><silent> ) <C-R>=AutoPairsInsert(')')<CR>
+endif
+
+" Markdown 浏览器预览插件
+if isdirectory(expand("~/.vim/bundle/markdown-preview.vim/"))
+    if OSX()
+        let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
+    endif
+    map <Leader>md :MarkdownPreview<CR>
+endif
+
+if isdirectory(expand("~/.vim/bundle/echodoc.vim/"))
+    set cmdheight=2
+    let g:echodoc_enable_at_startup = 1
+endif
+
+
+if isdirectory(expand("~/.vim/bundle/quickmenu.vim"))
+    source ~/myvim/quickmenu.vim
+endif
+
+"set noshowmode
+
 " }
+
