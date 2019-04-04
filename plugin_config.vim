@@ -265,6 +265,8 @@ endif
 if isdirectory(expand("~/.vim/bundle/markdown-preview.vim/"))
     if OSX()
         let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
+    elseif LINUX()
+        let g:mkdp_path_to_chrome = "google-chrome"
     endif
     map <Leader>md :MarkdownPreview<CR>
 endif

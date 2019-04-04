@@ -19,7 +19,7 @@ MYVIM=~/myvim
 YCM=~/.vim/bundle/YouCompleteMe
 
 if [[ ! -d ${MYVIM} ]];then
-    git clone git@github.com:all3n/myvim.git $MYVIM
+    git clone https://github.com/all3n/myvim.git $MYVIM
     ln -sf $MYVIM/.vimrc ~/.vimrc
 else
     git pull -q $MYVIM

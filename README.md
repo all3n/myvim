@@ -178,6 +178,9 @@ clean
 ## MarkdownPreview
     1. :MarkdownPreview 或则  <Leader>md
 
+## quick menu
+    1. F12
+
 
 ## Useful commands
  ![cheat sheet](http://www.viemu.com/vi-vim-cheat-sheet.gif).
