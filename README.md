@@ -3,7 +3,7 @@
 ## 安装
 full version:
 ```bash
-curl https://raw.githubusercontent.com/all3n/myvim/myvim.sh -L -o - |bash
+curl https://raw.githubusercontent.com/all3n/myvim/master/myvim.sh -L -o - |bash
 ```
 simple version:
 ```
