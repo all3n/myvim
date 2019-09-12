@@ -33,7 +33,7 @@ call vundle#begin()
     " Markdown 浏览器实时预览
     Plugin 'iamcco/markdown-preview.vim'
     " 智能提示插件
-    Plugin 'Valloric/YouCompleteMe'
+    "Plugin 'Valloric/YouCompleteMe'
     " 代码片段Snippets
     Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
@@ -56,6 +56,7 @@ call vundle#begin()
 
     Plugin 'tenfyzhong/CompleteParameter.vim'
     Plugin 'Shougo/echodoc.vim'
+    Plugin 'zxqfl/tabnine-vim'
 
 
 call vundle#end()            " required
