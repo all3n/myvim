@@ -33,11 +33,15 @@ call vundle#begin()
     " Markdown 浏览器实时预览
     Plugin 'iamcco/markdown-preview.vim'
     " 智能提示插件
-    "Plugin 'Valloric/YouCompleteMe'
+    if g:plugin_ycm_enable == 1
+        Plugin 'Valloric/YouCompleteMe'
+        Plugin 'tenfyzhong/CompleteParameter.vim'
+    endif
     " 代码片段Snippets
-    Plugin 'SirVer/ultisnips'
+    if g:plugin_ultisnips_enable == 1
+        Plugin 'SirVer/ultisnips'
+    endif
     Plugin 'honza/vim-snippets'
-
     " AutoPairs 自动匹配括号
     Plugin 'jiangmiao/auto-pairs'
     " AutoFormat 格式化
@@ -54,9 +58,12 @@ call vundle#begin()
     " Menu Plugin
     Plugin 'skywind3000/quickmenu.vim'
 
-    Plugin 'tenfyzhong/CompleteParameter.vim'
     Plugin 'Shougo/echodoc.vim'
-    Plugin 'zxqfl/tabnine-vim'
+    if g:plugin_tabnine_enable == 1
+        Plugin 'zxqfl/tabnine-vim'
+    endif
+    "tmux support 
+    Plugin 'benmills/vimux'
 
 
 call vundle#end()            " required

@@ -92,29 +92,29 @@ endif
 
 " YouCompleteMe {
 if isdirectory(expand("~/.vim/bundle/YouCompleteMe"))
-    let g:ycm_key_invoke_completion = '<C-l>'
-    let g:ycm_global_ycm_extra_conf = '~/myvim/.ycm_extra_conf.py'
-    let g:ycm_confirm_extra_conf = 0
-    set completeopt=longest,menu
-    "autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-    "inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-    let g:ycm_enable_diagnostic_signs = 0
-    let g:ycm_enable_diagnostic_highlighting = 1
-    let g:ycm_collect_identifiers_from_comments_and_strings = 0
+    if g:plugin_ycm_enable == 1
+        let g:ycm_key_invoke_completion = '<C-l>'
+        let g:ycm_global_ycm_extra_conf = '~/myvim/.ycm_extra_conf.py'
+        let g:ycm_confirm_extra_conf = 0
+        set completeopt=longest,menu
+        "autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+        "inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+        let g:ycm_enable_diagnostic_signs = 0
+        let g:ycm_enable_diagnostic_highlighting = 1
+        let g:ycm_collect_identifiers_from_comments_and_strings = 0
 
-    let g:ycm_seed_identifiers_with_syntax = 1
-    let g:ycm_complete_in_comments = 0
-    let g:ycm_complete_in_strings = 0
-    let g:ycm_min_num_of_chars_for_completion = 2
-    nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
-    nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-    nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+        let g:ycm_seed_identifiers_with_syntax = 1
+        let g:ycm_complete_in_comments = 0
+        let g:ycm_complete_in_strings = 0
+        let g:ycm_min_num_of_chars_for_completion = 2
+        nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+        nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+        nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-    
-    "let g:ycm_keep_logfiles = 1
-    "let g:ycm_log_level = 'debug'
-    "往前跳和往后跳的快捷键为Ctrl+O以及Ctrl+I
-
+        "let g:ycm_keep_logfiles = 1
+        "let g:ycm_log_level = 'debug'
+        "往前跳和往后跳的快捷键为Ctrl+O以及Ctrl+I
+    endif
 endif
 " }
 
@@ -147,8 +147,9 @@ endif
 " }
 
 
+
 " Snippets {
-    if isdirectory(expand("~/.vim/bundle/ultisnips"))
+    if g:plugin_ultisnips_enable == 1 && isdirectory(expand("~/.vim/bundle/ultisnips"))
         " fix Tab Conflict With YouCompleteMe
         " https://github.com/Valloric/YouCompleteMe/issues/36
         " https://stackoverflow.com/questions/14896327/ultisnips-and-youcompleteme
@@ -183,8 +184,6 @@ endif
         if !exists("g:UltiSnipsJumpBackwardTrigger")
           let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
         endif
-        au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger     . " <C-R>=g:UltiSnips_Complete()<cr>"
-        au InsertEnter * exec "inoremap <silent> " .     g:UltiSnipsJumpBackwardTrigger . " <C-R>=g:UltiSnips_Reverse()<cr>"
     endif
 " }
 
@@ -202,7 +201,7 @@ endif
         let g:formatter_yapf_style = 'pep8'
         noremap <F8> :Autoformat<CR>
 
-        au BufWrite * :Autoformat
+        "au BufWrite * :Autoformat
 
         let g:autoformat_autoindent = 0
         let g:autoformat_retab = 0
@@ -249,7 +248,7 @@ if isdirectory(expand("~/.vim/bundle/ale/"))
 endif
 
 " YCM 参数显示增强插件
-if isdirectory(expand("~/.vim/bundle/CompleteParameter.vim/"))
+if g:plugin_ycm_enable == 1 && isdirectory(expand("~/.vim/bundle/CompleteParameter.vim/"))
     "let g:complete_parameter_log_level = 1
     inoremap <silent><expr> ( complete_parameter#pre_complete("()")
     smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
@@ -280,6 +279,10 @@ endif
 if isdirectory(expand("~/.vim/bundle/quickmenu.vim"))
     source ~/myvim/quickmenu.vim
 endif
+
+
+nnoremap <leader>r :VimuxRunCommand("make")<CR>
+nnoremap <leader>l :VimuxRunLastCommand<CR>
 
 "set noshowmode
 

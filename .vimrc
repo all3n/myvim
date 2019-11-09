@@ -185,6 +185,7 @@ set wrap "Wrap lines
     set pastetoggle=<F4>
     map <leader>f ggVG=
     map <F6> ggVG=
+    noremap <leader>vm :source $MYVIMRC<CR>
 " }
 
 " Moving around, tabs, windows and buffers {
@@ -431,7 +432,14 @@ endfunction
     "inoremap <Tab> <C-R>=CleverTab()<CR>
 " }
 
+" load plugin conf {
+if filereadable(expand("~/myvim/config.vim"))
+    source ~/myvim/config.vim
+endif
 
+if filereadable(expand("~/myvim/config.local.vim"))
+    source ~/myvim/config.local.vim
+endif
 
 " load plugin conf {
 if filereadable(expand("~/myvim/plugin_vundle.vim"))
