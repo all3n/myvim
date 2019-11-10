@@ -32,15 +32,28 @@ call vundle#begin()
     Plugin 'iamcco/mathjax-support-for-mkdp'
     " Markdown 浏览器实时预览
     Plugin 'iamcco/markdown-preview.vim'
+
+
+    "  auto complete {
     " 智能提示插件
     if g:plugin_ycm_enable == 1
         Plugin 'Valloric/YouCompleteMe'
         Plugin 'tenfyzhong/CompleteParameter.vim'
     endif
+    if g:plugin_tabnine_enable == 1
+        Plugin 'zxqfl/tabnine-vim'
+    endif
+    if g:plugin_jedi_enable == 1
+        Plugin 'davidhalter/jedi-vim'
+    end
+    " }
+
     " 代码片段Snippets
     if g:plugin_ultisnips_enable == 1
         Plugin 'SirVer/ultisnips'
     endif
+
+
     Plugin 'honza/vim-snippets'
     " AutoPairs 自动匹配括号
     Plugin 'jiangmiao/auto-pairs'
@@ -59,9 +72,6 @@ call vundle#begin()
     Plugin 'skywind3000/quickmenu.vim'
 
     Plugin 'Shougo/echodoc.vim'
-    if g:plugin_tabnine_enable == 1
-        Plugin 'zxqfl/tabnine-vim'
-    endif
     "tmux support 
     Plugin 'benmills/vimux'
 
