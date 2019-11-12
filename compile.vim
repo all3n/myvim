@@ -10,7 +10,7 @@ func! Compile_Run_Code()
     if WINDOWS()
       exec '!g++ -Wall -std=c++11 -o %:r %:t && %:r.exe'
     else
-      exec '!g++ -Wall -std=c++11 -o %:r.out %:t && ./%:r.out && rm ./%:r.out'
+      exec '!g++ -Wall -std=c++11 -o /tmp/%:r.out %:t && /tmp/%:r.out && rm /tmp/%:r.out'
     endif
   elseif &filetype == 'objc'
     if OSX()
