@@ -61,6 +61,7 @@ clean
 
 ## [NERDTree]
 1. `<Leader>e` Toggle NERDTree
+1. Shift + i   Toggle Show Hidden Files
 
 ## [ctrlp]
 1. `<c-p>`.
@@ -174,6 +175,8 @@ clean
     1. Ctrl ] 跳转定义
     1. g] 跳转列表 选择
     1. Ctrl t 返回
+    1. common load: ~/.vim/tags/*.tags
+    1. app tags: tagsfile    each line is tagfilepath
 
 ## MarkdownPreview
     1. :MarkdownPreview 或则  <Leader>md

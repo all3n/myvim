@@ -25,13 +25,18 @@ fi
 ln -sf ${VIMDIR} ~/.vim
 
 
-VUNDLE_DIR=${VIMDIR}/bundle/Vundle.vim
-if [[ ! -d ${VUNDLE_DIR} ]];then
-    git clone https://github.com/VundleVim/Vundle.vim.git ${VUNDLE_DIR}
+#VUNDLE_DIR=${VIMDIR}/bundle/Vundle.vim
+#if [[ ! -d ${VUNDLE_DIR} ]];then
+#    git clone https://github.com/VundleVim/Vundle.vim.git ${VUNDLE_DIR}
+#fi
+#vim +PluginInstall +qall
+
+PLUGIN_MGR_DIR=${VIMDIR}/autoload/plug.vim
+if [[ ! -f ${PLUGIN_MGR_DIR} ]];then
+    curl -fLo ${VIMDIR}/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
-
-vim +PluginInstall +qall
-
+vim +PlugInstall +qall
 
 # check YouCompleteMe
 YCM=~/.vim/bundle/YouCompleteMe

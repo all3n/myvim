@@ -69,8 +69,9 @@ if executable("ctags")
     let app_tags_file = getcwd()."/tagsfile"
     if filereadable(app_tags_file)
         for tagfile in readfile(app_tags_file)
-            if filereadable(tagfile)
-                exec "set tags+=".tagfile
+            let abstagfile = expand(tagfile)
+            if filereadable(abstagfile)
+                exec "set tags+=".expand(abstagfile)
             endif
         endfor
     endif
@@ -95,48 +96,46 @@ endif
 " }
 
 " plugin tagbar {
-if isdirectory(expand("~/.vim/bundle/tagbar"))
+if isdirectory(expand("~/.vim/plugged/tagbar"))
     nnoremap <silent> <leader>tt :TagbarToggle<CR>
 endif
 " }
 
 " YouCompleteMe {
-if isdirectory(expand("~/.vim/bundle/YouCompleteMe"))
-    if g:plugin_ycm_enable == 1
-        let g:ycm_key_invoke_completion = '<C-l>'
-        let g:ycm_global_ycm_extra_conf = '~/myvim/.ycm_extra_conf.py'
-        let g:ycm_confirm_extra_conf = 0
-        set completeopt=longest,menu
-        "autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-        "inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-        let g:ycm_enable_diagnostic_signs = 0
-        let g:ycm_enable_diagnostic_highlighting = 1
-        let g:ycm_collect_identifiers_from_comments_and_strings = 0
+if g:plugin_ycm_enable == 1 && isdirectory(expand("~/.vim/plugged/YouCompleteMe"))
+    let g:ycm_key_invoke_completion = '<C-l>'
+    let g:ycm_global_ycm_extra_conf = '~/myvim/.ycm_extra_conf.py'
+    let g:ycm_confirm_extra_conf = 0
+    set completeopt=longest,menu
+    "autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+    "inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+    let g:ycm_enable_diagnostic_signs = 0
+    let g:ycm_enable_diagnostic_highlighting = 1
+    let g:ycm_collect_identifiers_from_comments_and_strings = 0
 
-        let g:ycm_seed_identifiers_with_syntax = 1
-        let g:ycm_complete_in_comments = 0
-        let g:ycm_complete_in_strings = 0
-        let g:ycm_min_num_of_chars_for_completion = 2
-        nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
-        nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-        nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+    let g:ycm_seed_identifiers_with_syntax = 1
+    let g:ycm_complete_in_comments = 0
+    let g:ycm_complete_in_strings = 0
+    let g:ycm_min_num_of_chars_for_completion = 2
+    nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+    nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+    nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-        "let g:ycm_keep_logfiles = 1
-        "let g:ycm_log_level = 'debug'
-        "往前跳和往后跳的快捷键为Ctrl+O以及Ctrl+I
-    endif
+    "let g:ycm_keep_logfiles = 1
+    "let g:ycm_log_level = 'debug'
+    "往前跳和往后跳的快捷键为Ctrl+O以及Ctrl+I
 endif
 " }
 
 " a.vim Source/Header Toggle {
 " switch .c and .h
-    if isdirectory(expand("~/.vim/bundle/a.vim"))
+    if isdirectory(expand("~/.vim/plugged/a.vim"))
         nnoremap <silent> <F9> :A<CR>
     endif
 " }
 
 " Tabularize {
-    if isdirectory(expand("~/.vim/bundle/tabular"))
+    if isdirectory(expand("~/.vim/plugged/tabular"))
         nmap <Leader>a& :Tabularize /&<CR>
         vmap <Leader>a& :Tabularize /&<CR>
         nmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
@@ -159,7 +158,7 @@ endif
 
 
 " Snippets {
-    if g:plugin_ultisnips_enable == 1 && isdirectory(expand("~/.vim/bundle/ultisnips"))
+    if g:plugin_ultisnips_enable == 1 && isdirectory(expand("~/.vim/plugged/ultisnips"))
         " fix Tab Conflict With YouCompleteMe
         " https://github.com/Valloric/YouCompleteMe/issues/36
         " https://stackoverflow.com/questions/14896327/ultisnips-and-youcompleteme
@@ -199,13 +198,13 @@ endif
 
 
 " ColorSchema Monkai {
-    if isdirectory(expand("~/.vim/bundle/molokai"))
+    if isdirectory(expand("~/.vim/plugged/molokai"))
         colorscheme molokai
     endif
 " }
 
 " AutoFormat {
-    if isdirectory(expand("~/.vim/bundle/vim-autoformat/"))
+    if isdirectory(expand("~/.vim/plugged/vim-autoformat/"))
         " python format sytle
         " you should install yapf first:pip install --user yapf
         let g:formatter_yapf_style = 'pep8'
@@ -223,7 +222,7 @@ endif
 
 
 " Ale  Syntax Check {
-if isdirectory(expand("~/.vim/bundle/ale/"))
+if isdirectory(expand("~/.vim/plugged/ale/"))
     " Check Python files with flake8 and pylint.
     let b:ale_linters = ['flake8', 'pylint']
     " Fix Python files with autopep8 and yapf.
@@ -258,7 +257,7 @@ if isdirectory(expand("~/.vim/bundle/ale/"))
 endif
 
 " YCM 参数显示增强插件
-if g:plugin_ycm_enable == 1 && isdirectory(expand("~/.vim/bundle/CompleteParameter.vim/"))
+if g:plugin_ycm_enable == 1 && isdirectory(expand("~/.vim/plugged/CompleteParameter.vim/"))
     "let g:complete_parameter_log_level = 1
     inoremap <silent><expr> ( complete_parameter#pre_complete("()")
     smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
@@ -271,7 +270,7 @@ if g:plugin_ycm_enable == 1 && isdirectory(expand("~/.vim/bundle/CompleteParamet
 endif
 
 " Markdown 浏览器预览插件
-if isdirectory(expand("~/.vim/bundle/markdown-preview.vim/"))
+if isdirectory(expand("~/.vim/plugged/markdown-preview.vim/"))
     if OSX()
         let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
     elseif LINUX()
@@ -280,21 +279,24 @@ if isdirectory(expand("~/.vim/bundle/markdown-preview.vim/"))
     map <Leader>md :MarkdownPreview<CR>
 endif
 
-if isdirectory(expand("~/.vim/bundle/echodoc.vim/"))
+if isdirectory(expand("~/.vim/plugged/echodoc.vim/"))
     set cmdheight=2
     let g:echodoc_enable_at_startup = 1
 endif
 
 
-if isdirectory(expand("~/.vim/bundle/quickmenu.vim"))
+if isdirectory(expand("~/.vim/plugged/quickmenu.vim"))
     source ~/myvim/quickmenu.vim
 endif
 
 
-nnoremap <leader>r :VimuxRunCommand("make")<CR>
-nnoremap <leader>l :VimuxRunLastCommand<CR>
 
-if g:plugin_jedi_enable == 1 && isdirectory(expand("~/.vim/bundle/jedi-vim"))
+if isdirectory(expand("~/.vim/plugged/vimux"))
+    nnoremap <leader>r :VimuxRunCommand("make")<CR>
+    nnoremap <leader>l :VimuxRunLastCommand<CR>
+endif
+
+if g:plugin_jedi_enable == 1 && isdirectory(expand("~/.vim/plugged/jedi-vim"))
     let g:jedi#goto_command = "<leader>d"
     let g:jedi#goto_assignments_command = "<leader>g"
     let g:jedi#goto_definitions_command = ""
@@ -304,6 +306,12 @@ if g:plugin_jedi_enable == 1 && isdirectory(expand("~/.vim/bundle/jedi-vim"))
     let g:jedi#rename_command = "<leader>r"
 endif
 
+
+
+
+if g:plugin_coc_enable == 1
+    let g:coc_global_extensions = ['coc-python', 'coc-html', 'coc-json', 'coc-css', 'coc-lists', 'coc-gitignore']
+endif
 "set noshowmode
 
 " }

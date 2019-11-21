@@ -311,8 +311,8 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
-" }
 
+" }
 " Misc {
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
@@ -322,7 +322,7 @@ map <leader>q :e ~/buffer<cr>
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
-map <leader>tt :%retab!<cr>
+map <leader>tb :%retab!<cr>
 
 " }
 
@@ -443,8 +443,8 @@ if filereadable(expand("~/myvim/config.local.vim"))
 endif
 
 " load plugin conf {
-if filereadable(expand("~/myvim/plugin_vundle.vim"))
-    source ~/myvim/plugin_vundle.vim
+if filereadable(expand("~/myvim/plugin_list.vim"))
+    source ~/myvim/plugin_list.vim
 endif
 
 if filereadable(expand("~/myvim/plugin_config.vim"))
