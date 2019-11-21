@@ -61,9 +61,19 @@ if executable("ctags")
     set tags=tags
     set tags+=./tags "add current directory's generated tags file
     set tags+=~/.vim/systags
-    "if exists(expand("~/.vim/systags"))
-    "    set tags+=~/.vim/systags
-    "endif
+    let ext_tags = glob("~/.vim/tags/*.tags", v:false, v:true)
+    for ext_tag in ext_tags
+        exec "set tags+=".ext_tag
+    endfor
+
+    let app_tags_file = getcwd()."/tagsfile"
+    if filereadable(app_tags_file)
+        for tagfile in readfile(app_tags_file)
+            if filereadable(tagfile)
+                exec "set tags+=".tagfile
+            endif
+        endfor
+    endif
 endif
 " }
 

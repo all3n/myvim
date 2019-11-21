@@ -130,6 +130,7 @@
     set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
     set nospell
     set number
+    set relativenumber
 " }
 
 " Colors and Fonts {

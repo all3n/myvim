@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+bin=`dirname "$0"`
+export APP_DIR=`cd "$bin/"; pwd`
 CMD=$1
 if [[ "$CMD" == "clean" ]];then
     vim +PluginClean +qall
@@ -7,17 +9,8 @@ else
     CMD=install
 fi
 
-VIMDIR=~/.vim
-
-if [[ ! -d ${VIMDIR} ]];then
-    mkdir -p $VIMDIR
-fi
-
-VUNDLE_DIR=${VIMDIR}/bundle/Vundle.vim
 
 MYVIM=~/myvim
-YCM=~/.vim/bundle/YouCompleteMe
-
 if [[ ! -d ${MYVIM} ]];then
     git clone https://github.com/all3n/myvim.git $MYVIM
     ln -sf $MYVIM/.vimrc ~/.vimrc
@@ -25,7 +18,14 @@ else
     git pull -q $MYVIM
 fi
 
+VIMDIR=$MYVIM/.vim
+if [[ ! -d ${VIMDIR} ]];then
+    mkdir -p $VIMDIR
+fi
+ln -sf ${VIMDIR} ~/.vim
 
+
+VUNDLE_DIR=${VIMDIR}/bundle/Vundle.vim
 if [[ ! -d ${VUNDLE_DIR} ]];then
     git clone https://github.com/VundleVim/Vundle.vim.git ${VUNDLE_DIR}
 fi
@@ -33,8 +33,8 @@ fi
 vim +PluginInstall +qall
 
 
-
 # check YouCompleteMe
+YCM=~/.vim/bundle/YouCompleteMe
 if [[ -d "$YCM" ]];then
     YCM_CORE=~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so
     if [[ ! -f "$YCM_CORE" ]];then

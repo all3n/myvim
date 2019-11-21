@@ -33,7 +33,7 @@ call vundle#begin()
     " Markdown 浏览器实时预览
     Plugin 'iamcco/markdown-preview.vim'
 
-
+    
     "  auto complete {
     " 智能提示插件
     if g:plugin_ycm_enable == 1
@@ -75,6 +75,12 @@ call vundle#begin()
     "tmux support 
     Plugin 'benmills/vimux'
 
+
+    " nvim only pluin list
+    if has("nvim")
+        "python high light
+        Plugin 'numirias/semshi'
+    endif
 
 call vundle#end()            " required
 
