@@ -11,7 +11,7 @@ curl -o ~/.vimrc https://raw.githubusercontent.com/all3n/myvim/master/.vimrc.sim
 ```
 
 ## 自定义配置
-1. ~/myvim/plugin_vundle.vim
+1. ~/myvim/plugin_list.vim
     1. 定义插件列表
 1. ~/myvim/plugin_config.vim
     1. 插件相关配置
@@ -25,16 +25,13 @@ curl -o ~/.vimrc https://raw.githubusercontent.com/all3n/myvim/master/.vimrc.sim
     ./myvim.sh
     或者
     git pull
-    vim +PluginInstall +qall
+    vim +PlugInstall +qall
 ```
 clean
-
 ```
     cd $HOME/myvim
     ./myvim.sh clean
-
 ```
-
 ## General
     1. <leader>sudo sudo save
     1. %  对应括号之前切换
