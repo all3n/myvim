@@ -1,7 +1,6 @@
 "set rtp+=~/.vim/bundle/Vundle.vim
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/myvim/.vim/plugged')
     " Vim 插件管理
-    Plug 'VundleVim/Vundle.vim'
     " 文件目录管理
     Plug 'scrooloose/nerdtree'
     " 文件目录管理 Git 标示插件
