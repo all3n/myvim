@@ -60,8 +60,9 @@ clean
 1. `<Leader>e` Toggle NERDTree
 1. Shift + i   Toggle Show Hidden Files
 
-## [ctrlp]
-1. `<c-p>`.
+## [FZF]
+1. `<c-p>` 快速根据文件名查找
+1. `leader+g` 根据文件内容查找
 
 ## [Surround]
 
@@ -127,13 +128,13 @@ clean
 
 ## [Tabularize] 排版插件 按指定符号对齐
 
- * `<Leader>a= :Tabularize /=<CR>`
- * `<Leader>a: :Tabularize /:<CR>`
- * `<Leader>a:: :Tabularize /:\zs<CR>`
- * `<Leader>a, :Tabularize /,<CR>`
- * `<Leader>a<Bar> :Tabularize /<Bar><CR>`
+ * `<Leader>a= :Tabularize /=<CR>`  根据=对齐 
+ * `<Leader>a: :Tabularize /:<CR>`  根据:对齐
+ * `<Leader>a:: :Tabularize /:\zs<CR>` 
+ * `<Leader>a, :Tabularize /,<CR>`  根据,对齐
+ * `<Leader>a<Bar> :Tabularize /<Bar><CR>` 根据|对齐
 
-## [Tagbar]
+## [Tagbar] 标签列表
  * <leader> tt   Toggle TagBar
 
 ## [EasyMotion] 快速定位
@@ -147,12 +148,17 @@ clean
         1. `<leader><leader>l`
 
 ## [Airline] 彩色状态条
+选择你喜欢的主题 https://github.com/vim-airline/vim-airline/wiki/Screenshots
 
 ## Amazing Colors
     * molokai
 
 ## Snippets
-1. Tab Expand Snippets
+1. Tab Expand Snippets Ctrl-e
+1. 定义 https://github.com/honza/vim-snippets/tree/master/UltiSnips
+1. 展开之后
+    1. Ctrl + j 选择展开下个编辑
+    1. Ctrl + k 选择上一个编辑项
 
 
 ## A.vim

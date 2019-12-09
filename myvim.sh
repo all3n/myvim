@@ -3,7 +3,10 @@ bin=`dirname "$0"`
 export APP_DIR=`cd "$bin/"; pwd`
 CMD=$1
 if [[ "$CMD" == "clean" ]];then
-    vim +PluginClean +qall
+    vim +PlugClean +qall
+    exit 0
+elif [[ "$CMD" == "update" ]];then
+    vim +PlugUpdate +qall
     exit 0
 else
     CMD=install
@@ -39,13 +42,13 @@ fi
 vim +PlugInstall +qall
 
 # check YouCompleteMe
-YCM=~/.vim/bundle/YouCompleteMe
+YCM=~/.vim/plugged/YouCompleteMe
 if [[ -d "$YCM" ]];then
-    YCM_CORE=~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so
+    YCM_CORE=~/.vim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so
     if [[ ! -f "$YCM_CORE" ]];then
         echo "start to build YouCompleteMe"
         pushd $YCM 2>&1
-        ./install.py --clang-completer
+        /usr/bin/python3 ./install.py --clang-completer
         popd
     fi
 fi

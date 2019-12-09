@@ -122,7 +122,7 @@
     set t_vb=
     set tm=500
     set cursorline
-    hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+    "hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
     " set cursorcolumn
     " hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
     " show tab
@@ -130,7 +130,7 @@
     set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
     set nospell
     set number
-    set relativenumber
+    "set relativenumber
 " }
 
 " Colors and Fonts {
@@ -240,13 +240,30 @@ set wrap "Wrap lines
          \   exe "normal! g`\"" |
          \ endif
     " Remember info about open buffers on close
-    set viminfo^=%
+    "set viminfo^=%
+    "set viminfo='1000,<800
+    if has("nvim")
+        set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/cache/.nviminfo
+    else
+        set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/cache/.viminfo
+    endif
+    "           | |    |   |   |    | |  + viminfo file path
+    "           | |    |   |   |    | + file marks 0-9,A-Z 0=NOT stored
+    "           | |    |   |   |    + disable 'hlsearch' loading viminfo
+    "           | |    |   |   + command-line history saved
+    "           | |    |   + search history saved
+    "           | |    + files marks saved
+    "           | + lines saved each register (old name for <, vi6.2)
+    "           + save/restore buffer list
 
 " }
 
 " Editing mappings {
 " Remap VIM 0 to first non-blank character
 map 0 ^
+
+nnoremap <c-z> :u<CR>      " Avoid using this**
+inoremap <c-z> <c-o>:u<CR>"
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
@@ -282,7 +299,7 @@ vnoremap <silent> gv :call VisualSelection('gv')<CR>
 " map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
 
 " When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
+vnoremap <silent> <leader>R :call VisualSelection('replace')<CR>
 
 " Do :help cope if you are unsure what cope is. It's super useful!
 "
@@ -325,6 +342,7 @@ map <leader>pp :setlocal paste!<cr>
 map <leader>tb :%retab!<cr>
 
 " }
+set completeopt=longest,menu
 
 " Helper functions {
 
@@ -432,6 +450,14 @@ endfunction
     endfunction
     "inoremap <Tab> <C-R>=CleverTab()<CR>
 " }
+
+" linux only zeal
+if executable("/usr/bin/zeal")
+    let g:plugin_zeal_enable = 1
+else
+    let g:plugin_zeal_enable = 0
+endif
+
 
 " load plugin conf {
 if filereadable(expand("~/myvim/config.vim"))

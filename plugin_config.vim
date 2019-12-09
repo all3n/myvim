@@ -14,6 +14,7 @@ map <C-E> :NERDTreeToggle<CR>
 
 " close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeIgnore = ['\.pyc$','\.o$', '\.d$']
 
 " define arrow symbols
 let g:NERDTreeDirArrowExpandable = '▸'
@@ -42,8 +43,8 @@ nmap <silent> <leader>d <Plug>DashSearch
 
 
 " airline {
-    let g:airline_theme="molokai" 
-
+" vim-airline theme preview in 
+" https://github.com/vim-airline/vim-airline/wiki/Screenshots
 
     "打开tabline功能,方便查看Buffer和切换，这个功能比较不错"
     let g:airline#extensions#tabline#enabled = 1
@@ -106,7 +107,6 @@ if g:plugin_ycm_enable == 1 && isdirectory(expand("~/.vim/plugged/YouCompleteMe"
     let g:ycm_key_invoke_completion = '<C-l>'
     let g:ycm_global_ycm_extra_conf = '~/myvim/.ycm_extra_conf.py'
     let g:ycm_confirm_extra_conf = 0
-    set completeopt=longest,menu
     "autocmd InsertLeave * if pumvisible() == 0|pclose|endif
     "inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
     let g:ycm_enable_diagnostic_signs = 0
@@ -159,40 +159,18 @@ endif
 
 " Snippets {
     if g:plugin_ultisnips_enable == 1 && isdirectory(expand("~/.vim/plugged/ultisnips"))
-        " fix Tab Conflict With YouCompleteMe
-        " https://github.com/Valloric/YouCompleteMe/issues/36
-        " https://stackoverflow.com/questions/14896327/ultisnips-and-youcompleteme
-        function! g:UltiSnips_Complete()
-          call UltiSnips#ExpandSnippet()
-          if g:ulti_expand_res == 0
-            if pumvisible()
-              return "\<C-n>"
-            else
-              call UltiSnips#JumpForwards()
-              if g:ulti_jump_forwards_res == 0
-                return "\<TAB>"
-              endif
-            endif
-          endif
-          return ""
-        endfunction
-
-        function! g:UltiSnips_Reverse()
-          call UltiSnips#JumpBackwards()
-          if g:ulti_jump_backwards_res == 0
-            return "\<C-P>"
-          endif
-
-          return ""
-        endfunction
-
-
+        if !exists("g:UltiSnipsExpandTrigger")
+            " Trigger configuration. Do not use <tab> if you use YouCompleteMe.
+            let g:UltiSnipsExpandTrigger="<c-e>"
+        endif
         if !exists("g:UltiSnipsJumpForwardTrigger")
-          let g:UltiSnipsJumpForwardTrigger = "<tab>"
+          let g:UltiSnipsJumpForwardTrigger = "<C-j>"
         endif
         if !exists("g:UltiSnipsJumpBackwardTrigger")
-          let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+          let g:UltiSnipsJumpBackwardTrigger="<C-k>"
         endif
+        let g:UltiSnipsSnippetDirectories = [$HOME.'/myvim/Ultisnips/', 'UltiSnips']
+        let g:UltiSnipsEditSplit="vertical"
     endif
 " }
 
@@ -250,26 +228,29 @@ if isdirectory(expand("~/.vim/plugged/ale/"))
     nmap <Leader>s :ALEToggle<CR>
     "<Leader>d查看错误或警告的详细信息
     nmap <Leader>ad :ALEDetail<CR>
+    nmap <Leader>af :ALEFix<CR>
     "文件内容发生变化时不进行检查
     " let g:ale_lint_on_text_changed = 'never'
     "打开文件时不进行检查
     " let g:ale_lint_on_enter = 0
 endif
+" }
 
-" YCM 参数显示增强插件
-if g:plugin_ycm_enable == 1 && isdirectory(expand("~/.vim/plugged/CompleteParameter.vim/"))
-    "let g:complete_parameter_log_level = 1
-    inoremap <silent><expr> ( complete_parameter#pre_complete("()")
-    smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
-    imap <c-j> <Plug>(complete_parameter#goto_next_parameter)
-    smap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
-    imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+" YCM 参数显示增强插件{
+"if g:plugin_ycm_enable == 1 && isdirectory(expand("~/.vim/plugged/CompleteParameter.vim/"))
+    ""let g:complete_parameter_log_level = 1
+    "inoremap <silent><expr> ( complete_parameter#pre_complete("()")
+    "smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+    "imap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+    "smap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+    "imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
 
-    let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
-    inoremap <buffer><silent> ) <C-R>=AutoPairsInsert(')')<CR>
-endif
+    "let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
+    "inoremap <buffer><silent> ) <C-R>=AutoPairsInsert(')')<CR>
+"endif
+" }
 
-" Markdown 浏览器预览插件
+" Markdown 浏览器预览插件 {
 if isdirectory(expand("~/.vim/plugged/markdown-preview.vim/"))
     if OSX()
         let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
@@ -278,24 +259,36 @@ if isdirectory(expand("~/.vim/plugged/markdown-preview.vim/"))
     endif
     map <Leader>md :MarkdownPreview<CR>
 endif
+" }
 
-if isdirectory(expand("~/.vim/plugged/echodoc.vim/"))
-    set cmdheight=2
-    let g:echodoc_enable_at_startup = 1
+"echodoc {
+"requires v:completed_item feature. It is added in Vim 7.4.774.
+if exists('v:completed_item') && !empty(v:completed_item)
+    if isdirectory(expand("~/.vim/plugged/echodoc.vim/"))
+        "set cmdheight=2
+        "let g:echodoc_enable_at_startup = 1
+    endif
 endif
+" }
 
 
+" quickmenu {
 if isdirectory(expand("~/.vim/plugged/quickmenu.vim"))
     source ~/myvim/quickmenu.vim
 endif
+" }
 
 
 
+
+" vimux tmux support {
 if isdirectory(expand("~/.vim/plugged/vimux"))
     nnoremap <leader>r :VimuxRunCommand("make")<CR>
     nnoremap <leader>l :VimuxRunLastCommand<CR>
 endif
+" }
 
+" jedi python {
 if g:plugin_jedi_enable == 1 && isdirectory(expand("~/.vim/plugged/jedi-vim"))
     let g:jedi#goto_command = "<leader>d"
     let g:jedi#goto_assignments_command = "<leader>g"
@@ -305,13 +298,29 @@ if g:plugin_jedi_enable == 1 && isdirectory(expand("~/.vim/plugged/jedi-vim"))
     let g:jedi#completions_command = "<C-Space>"
     let g:jedi#rename_command = "<leader>r"
 endif
+" }
+
+ 
+" pig support {
+augroup filetypedetect
+  au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
+augroup END
+" }
 
 
-
-
+" complete coc }
 if g:plugin_coc_enable == 1
     let g:coc_global_extensions = ['coc-python', 'coc-html', 'coc-json', 'coc-css', 'coc-lists', 'coc-gitignore']
 endif
+" }
 "set noshowmode
 
-" }
+
+if g:plugin_ranger_enable == 1
+    map <leader>f :Ranger<CR>
+endif
+
+
+
+noremap <C-p> :FZF<CR>
+noremap <leader>g :Ag<CR>

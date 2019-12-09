@@ -9,13 +9,23 @@ call plug#begin('~/.vim/plugged')
     " 注释插件
     Plug 'scrooloose/nerdcommenter'
     " 文件查找
-    Plug 'kien/ctrlp.vim'
+    "Plug 'kien/ctrlp.vim'
+    Plug 'junegunn/fzf.vim'
+    "Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+    Plug 'junegunn/fzf'
+
     " 内容快速定位
     Plug 'easymotion/vim-easymotion'
     " 括号彩虹色匹配高亮
     Plug 'luochen1990/rainbow'
-    " Dash 插件支持
-    Plug 'rizzatti/dash.vim'
+    " Dash 插件支持 for mac
+    if g:plugin_dash_enable == 1
+        Plug 'rizzatti/dash.vim'
+    endif
+    " Zeal support for linux
+    if g:plugin_zeal_enable == 1
+        Plug 'kabbamine/zeavim.vim'
+    endif
     " Header/Souce 切换
     Plug 'vim-scripts/a.vim'
     " 底部状态栏
@@ -33,7 +43,6 @@ call plug#begin('~/.vim/plugged')
     " Markdown 浏览器实时预览
     Plug 'iamcco/markdown-preview.vim'
 
-    
     "  auto complete {
     " 智能提示插件
     if g:plugin_ycm_enable == 1
@@ -50,14 +59,18 @@ call plug#begin('~/.vim/plugged')
 
     " 代码片段Snippets
     if g:plugin_ultisnips_enable == 1
-        Plug 'SirVer/ultisnips'
+        Plug 'SirVer/ultisnips' ,{ 'tag': '3.1'  }
+        " Snippets are separated from the engine
+        Plug 'honza/vim-snippets'
     endif
 
+    if v:version < 800
+        g:plugin_coc_enable = 0
+    endif
     if g:plugin_coc_enable == 1
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
     endif
 
-    Plug 'honza/vim-snippets'
     " AutoPairs 自动匹配括号
     Plug 'jiangmiao/auto-pairs'
     " AutoFormat 格式化
@@ -70,7 +83,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-signify'
 
     " Syntax Check 语法检测
-    Plug 'w0rp/ale'
+    Plug 'dense-analysis/ale'
+
     " Menu Plug
     Plug 'skywind3000/quickmenu.vim'
 
@@ -78,12 +92,31 @@ call plug#begin('~/.vim/plugged')
     "tmux support 
     Plug 'benmills/vimux'
 
+    " Pig Support
+    Plug 'motus/pig.vim'
 
+
+    if g:plugin_ranger_enable == 1
+        Plug 'ranger/ranger'
+        Plug 'francoiscabrol/ranger.vim'
+    endif
     " nvim only pluin list
     if has("nvim")
         "python high light
-        Plug 'numirias/semshi'
+        Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+        if g:plugin_ranger_enable == 1
+            " for nvim ranger support dep
+            Plug 'rbgrouleff/bclose.vim'
+        endif
     endif
+
+    " python dev
+    " anaconda support
+    "Plug 'cjrh/vim-conda'
+    Plug 'jmcantrell/vim-virtualenv'
+
+
+
 
 call plug#end()
 
