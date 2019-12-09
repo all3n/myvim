@@ -20,19 +20,21 @@ if [[ ! -d ${MYVIM} ]];then
 else
     git pull -q $MYVIM
 fi
+if [[ ! -f $MYVIM/config.local.vim  ]];then
+    cp $MYVIM/config.vim $MYVIM/config.local.vim
+fi
 
 VIMDIR=$MYVIM/.vim
 if [[ ! -d ${VIMDIR} ]];then
     mkdir -p $VIMDIR
 fi
-ln -sf ${VIMDIR} ~/.vim
 
-
-#VUNDLE_DIR=${VIMDIR}/bundle/Vundle.vim
-#if [[ ! -d ${VUNDLE_DIR} ]];then
-#    git clone https://github.com/VundleVim/Vundle.vim.git ${VUNDLE_DIR}
-#fi
-#vim +PluginInstall +qall
+if [[ -L ~/.vim ]];then
+    ln -sf ${VIMDIR} ~/.vim
+elif [[ -d ~/.vim ]];then
+    mv ~/.vim ~/.vim_bakup
+    ln -sf ${VIMDIR} ~/.vim
+fi
 
 PLUGIN_MGR_DIR=${VIMDIR}/autoload/plug.vim
 if [[ ! -f ${PLUGIN_MGR_DIR} ]];then
