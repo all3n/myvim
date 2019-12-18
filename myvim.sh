@@ -30,9 +30,14 @@ if [[ ! -d ${VIMDIR} ]];then
 fi
 
 if [[ -L ~/.vim ]];then
+    # is sym link
     ln -sf ${VIMDIR} ~/.vim
 elif [[ -d ~/.vim ]];then
+    # is dir
     mv ~/.vim ~/.vim_bakup
+    ln -sf ${VIMDIR} ~/.vim
+else
+    # not exists
     ln -sf ${VIMDIR} ~/.vim
 fi
 
