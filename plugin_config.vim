@@ -62,10 +62,12 @@ if executable("ctags")
     set tags=tags
     set tags+=./tags "add current directory's generated tags file
     set tags+=~/.vim/systags
-    let ext_tags = glob("~/.vim/tags/*.tags", v:false, v:true)
-    for ext_tag in ext_tags
-        exec "set tags+=".ext_tag
-    endfor
+    if v:version > 800
+    	let ext_tags = glob("~/.vim/tags/*.tags", v:false, v:true)
+    	for ext_tag in ext_tags
+    	    exec "set tags+=".ext_tag
+    	endfor
+    endif
 
     let app_tags_file = getcwd()."/tagsfile"
     if filereadable(app_tags_file)
@@ -161,13 +163,13 @@ endif
     if g:plugin_ultisnips_enable == 1 && isdirectory(expand("~/.vim/plugged/ultisnips"))
         if !exists("g:UltiSnipsExpandTrigger")
             " Trigger configuration. Do not use <tab> if you use YouCompleteMe.
-            let g:UltiSnipsExpandTrigger="<c-e>"
+            let g:UltiSnipsExpandTrigger="<c-n>"
         endif
         if !exists("g:UltiSnipsJumpForwardTrigger")
-          let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+          let g:UltiSnipsJumpForwardTrigger = "<C-n>"
         endif
         if !exists("g:UltiSnipsJumpBackwardTrigger")
-          let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+          let g:UltiSnipsJumpBackwardTrigger="<C-p>"
         endif
         let g:UltiSnipsSnippetDirectories = [$HOME.'/myvim/Ultisnips/', 'UltiSnips']
         let g:UltiSnipsEditSplit="vertical"
@@ -295,7 +297,7 @@ if g:plugin_jedi_enable == 1 && isdirectory(expand("~/.vim/plugged/jedi-vim"))
     let g:jedi#goto_definitions_command = ""
     let g:jedi#documentation_command = "K"
     let g:jedi#usages_command = "<leader>n"
-    let g:jedi#completions_command = "<C-Space>"
+    let g:jedi#completions_command = "<C-]>"
     let g:jedi#rename_command = "<leader>r"
 endif
 " }

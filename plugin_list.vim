@@ -64,7 +64,7 @@ call plug#begin('~/myvim/.vim/plugged')
     endif
 
     if v:version < 800
-        g:plugin_coc_enable = 0
+        let g:plugin_coc_enable = 0
     endif
     if g:plugin_coc_enable == 1
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -93,6 +93,15 @@ call plug#begin('~/myvim/.vim/plugged')
 
     " Pig Support
     Plug 'motus/pig.vim'
+
+
+    if has('nvim')
+      Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+    else
+      Plug 'Shougo/denite.nvim'
+      Plug 'roxma/nvim-yarp'
+      Plug 'roxma/vim-hug-neovim-rpc'
+    endif
 
 
     if g:plugin_ranger_enable == 1

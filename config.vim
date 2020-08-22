@@ -14,5 +14,5 @@ let g:airline_theme="molokai"
 let g:plugin_dash_enable = 0
 
 let g:plugin_ranger_enable = 1
-let g:python_host_prog = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python3'
+"let g:python_host_prog = '/usr/bin/python2'
+"let g:python3_host_prog = '/usr/bin/python3'
