@@ -10,6 +10,22 @@ simple version:
 curl -o ~/.vimrc https://raw.githubusercontent.com/all3n/myvim/master/.vimrc.simple
 ```
 
+
+
+neovim
+```
+brew install neovim
+apt-get install neovim
+
+
+
+
+mkdir -p ~/.config/nvim && curl -o ~/.config/nvim/init.vim https://raw.githubusercontent.com/all3n/myvim/master/init.vim
+
+
+
+```
+
 ## 自定义配置
 1. ~/myvim/plugin_list.vim
     1. 定义插件列表

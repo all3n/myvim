@@ -663,9 +663,28 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-scripts/a.vim'
 
+" python syntax highlight
+" pip3 install pynvim --upgrade 
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tomasr/molokai'
+
+
+" search plugin
+
+Plug 'ranger/ranger'
+Plug 'francoiscabrol/ranger.vim'
+
+
+Plug 'majutsushi/tagbar'
+
+
+Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+"Plug 'junegunn/fzf'
+
 
 
 call plug#end()
@@ -673,6 +692,7 @@ call plug#end()
 
 
 " nerdtree-git-plugin {
+if isdirectory(expand("~/.vim/plugged/nerdtree/"))
 autocmd vimenter * NERDTree
 
 " open a NERDTree automatically when vim starts up if no files were specified
@@ -705,7 +725,9 @@ let g:NERDTreeIndicatorMapCustom = {
     \ 'Ignored'   : '☒',
     \ "Unknown"   : "?"
     \ }
+endif
 " }
+"
 "
 
 
@@ -715,6 +737,11 @@ let g:NERDTreeIndicatorMapCustom = {
 
 
 
-colorscheme molokai
-nnoremap <silent> <F9> :A<CR>
+if isdirectory(expand("~/.vim/plugged/molokai"))
+    colorscheme molokai
+endif
+
+if isdirectory(expand("~/.vim/plugged/a"))
+    nnoremap <silent> <F9> :A<CR>
+endif
 noremap <leader>g :Ag<CR>
