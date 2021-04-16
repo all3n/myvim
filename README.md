@@ -20,8 +20,10 @@ apt-get install neovim
 
 
 
-mkdir -p ~/.config/nvim && curl -o ~/.config/nvim/init.vim https://raw.githubusercontent.com/all3n/myvim/master/init.vim
+mkdir -p ~/.config/nvim && curl -o ~/.config/nvim/init.vim https://raw.githubusercontent.com/all3n/myvim/master/init.vim && vim +PlugInstall +quitall 
 
+
+curl https://raw.githubusercontent.com/all3n/myvim/master/nvim.sh -L -o - |bash
 
 
 ```
