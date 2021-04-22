@@ -249,8 +249,8 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 
 
-nnoremap <F3> :tabnext<CR> 
-nnoremap <F2> :tabprev<CR> 
+nnoremap <C-N> :tabnext<CR> 
+nnoremap <C-M> :tabprev<CR> 
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
