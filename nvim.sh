@@ -6,7 +6,12 @@ install_file(){
     if [[ -f $FILE_PATH ]];then
         mv $FILE_PATH $FILE_PATH.$(date +%s).bak
     fi
-    curl -o $FILE_PATH https://raw.githubusercontent.com/all3n/myvim/master/$FILE_NAME
+
+    if [[ -d .git ]];then
+        cp $FILE_NAME $FILE_PATH
+    else
+        curl -o $FILE_PATH https://raw.githubusercontent.com/all3n/myvim/master/$FILE_NAME
+    fi
 }
 
 

@@ -122,6 +122,7 @@ call plug#begin('~/myvim/.vim/plugged')
     " anaconda support
     "Plug 'cjrh/vim-conda'
     Plug 'jmcantrell/vim-virtualenv'
+    Plug 'luzhlon/xmake.vim'
 
 
 

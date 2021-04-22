@@ -13,6 +13,11 @@ curl -o ~/.vimrc https://raw.githubusercontent.com/all3n/myvim/master/.vimrc.sim
 
 
 neovim
+https://github.com/neovim/neovim/releases/download/v0.4.4/nvim-linux64.tar.gz
+https://github.com/clangd/clangd/releases/download/12.0.0/clangd-linux-12.0.0.zip
+
+
+
 ```
 brew install neovim
 apt-get install neovim
